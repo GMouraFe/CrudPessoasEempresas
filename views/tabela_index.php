@@ -17,14 +17,16 @@
 							echo('<h1>Nenhum usuario encontrado</h1>');
 							echo('<h4>Que tal adicionar alguns?<h4>');
 						echo('</div>');
-					}else{
-						echo("<table class='w3-table-all'>");
-							echo("<tr class='w3-teal'>");
-								echo("<th>Nome</th>");
-								echo("<th>Empresa</th>");
-								echo("<th>Ações</th>");
-								echo("<th></th>");
-							echo("</tr>");
+					}else{ ?>
+					
+						<table class='w3-table-all'>
+							<tr class='w3-teal'>
+								<th>Nome</th>
+								<th>Empresa</th>
+								<th>Ações</th>
+								<th></th>
+							</tr>
+							<?php
 							while($rs = $resultset->fetch_assoc()){
 									echo("<tr>");
 										echo("<td>");
