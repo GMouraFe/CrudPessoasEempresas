@@ -25,7 +25,7 @@
 
 			</form>
 		</div>
-		<h3>Já cadastradas:</h3>
+		<h3>Já cadastrados:</h3>
 			<?php
 				$connect = new mysqli("127.0.0.1", "admin", "ev3ris!", "Catalogo");
 		
@@ -34,7 +34,10 @@
 						$resultset = $connect->query($query);
 							
 					if($resultset->num_rows == 0){
-							
+						echo('<div class="w3-panel w3-blue">');
+							echo('<h1>Nenhum usuario encontrado</h1>');
+							echo('<h4>Que tal adicionar alguns?<h4>');
+						echo('</div>');
 					}else{
 						echo("<table class='w3-table-all'>");
 							echo("<tr class='w3-teal'>");

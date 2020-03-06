@@ -1,13 +1,21 @@
+<!-- 
+	Import simples de estilos W3
+-->
+
 <!DOCTYPE HTML>
 <HTML>
 	<HEAD>
 		 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 		 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-flat.css">
 	</HEAD>
-	<body>
+	<BODY class="w3-container">
 
 <?php
+
+	//Inclusão da clase base pessoa
 	include ('/../models/pessoa.php');
+	
+	//Chamada if caso a ação da index seja Inserir
 	if($_POST['action']== 'inserir'){
 		inserir_contatos();
 		echo('<div class="w3-panel w3-green">');
@@ -15,6 +23,8 @@
 			echo('<h4>Individuo inserido com sucesso <a href="/../index.php/">clique aqui para retornar</a> .</h4>');
 		echo('</div>');
 	}
+	
+	//Chamada if caso a ação da index seja excluir
 	if($_POST['action']== 'excluir'){
 		excluir_contatos();
 		echo('<div class="w3-panel w3-red">');
@@ -22,13 +32,8 @@
 			echo('<h4>Individuo excluido com sucesso <a href="/../index.php/">clique aqui para retornar</a> .</h4>');
 		echo('</div>');
 	}
-	if($_POST['action']== 'alterar_finalizar'){
-		alterar_contatos();
-		echo('<div class="w3-panel w3-blue">');
-			echo('<h1>Sucesso!</h1>');
-			echo('<h4>Individuo alterado com sucesso <a href="/../index.php/">clique aqui para retornar</a> .<h4>');
-		echo('</div>');
-	}
+
+	//Chamada if inicial caso a ação da index seja Alterar
 	if($_POST['action']== 'alterar'){
 		
 		$p = new Pessoa($_POST['id'],'','');
@@ -60,6 +65,17 @@
 		echo('</div>');
 	}
 	
+	//Chamada if final caso a ação da index seja Alterar
+	if($_POST['action']== 'alterar_finalizar'){
+		alterar_contatos();
+		echo('<div class="w3-panel w3-blue">');
+			echo('<h1>Sucesso!</h1>');
+			echo('<h4>Individuo alterado com sucesso <a href="/../index.php/">clique aqui para retornar</a> .<h4>');
+		echo('</div>');
+	}
+	
+	
+	//Funções de operação em banco
 	function inserir_contatos(){
 		$p = new Pessoa('',$_POST['nome'],$_POST['empresa']);
 		$connect = new mysqli("127.0.0.1", "admin", "ev3ris!", "Catalogo");
@@ -92,5 +108,5 @@
 	
 ?>
 
-<body>
+</body>
 </HTML>
