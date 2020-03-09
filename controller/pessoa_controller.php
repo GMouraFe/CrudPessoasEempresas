@@ -45,17 +45,25 @@
 
 			function executar_acao_contato($action){
 				$connect = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_DATABASE);
+				
+			
 				if($connect){
 					if($action == 'inserir'){
-						$p = new Pessoa('',$_POST['nome'],$_POST['empresa']);
+						$nome = $_POST['nome'];
+						$empresa = $_POST['empresa'];
+						$p = new Pessoa('',$nome ,$empresa);
 						$query = $p->genInsertQuery();
 					}
 					if($action == 'excluir'){
-						$p = new Pessoa($_POST['id'],'','');
+						$id = $_POST['id'];
+						$p = new Pessoa($id,'','');
 						$query = $p->genDeleteQuery();
 					}
 					if($action == 'alterar_finalizar'){
-						$p = new Pessoa($_POST['id'],$_POST['nome'],$_POST['empresa']);
+						$id = $_POST['id'];
+						$nome = $_POST['nome'];
+						$empresa = $_POST['empresa'];
+						$p = new Pessoa($id,$nome,$empresa);
 						$query = $p->genUpdateQuery();
 					}
 					$connect->query($query);

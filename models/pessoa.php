@@ -13,21 +13,17 @@
 		
 		//Funcoes de querys
 		function genInsertQuery(){
-			$sql = "INSERT INTO pessoas (nome,empresa)VALUES('".$this->nome."','".$this->empresa."')";
-			return $sql;
+			return "INSERT INTO pessoas (nome,empresa)VALUES('".$this->nome."','".$this->empresa."')";
 		}
 		function genDeleteQuery(){
-			$sql = "Delete from pessoas where id ='".$this->id."'";
-			return $sql;
+			return "Delete from pessoas where id ='".$this->id."'";
 		}
 		function genUpdateQuery(){
-			$sql = "UPDATE pessoas SET nome = '".$this->nome."', empresa = '".$this->empresa."' WHERE pessoas.id = '".$this->id."'";
-			return $sql;
+			return "UPDATE pessoas SET nome = '".$this->nome."', empresa = '".$this->empresa."' WHERE pessoas.id = '".$this->id."'";
 		}
 		
 		function genSelectQuery(){
-			$sql = "Select id, nome, empresa from pessoas WHERE id = '".$this->id."'";
-			return $sql;
+			return "Select id, nome, empresa from pessoas WHERE id = '".$this->id."'";
 		}
 	}
 ?>

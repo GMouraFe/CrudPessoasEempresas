@@ -14,10 +14,10 @@
 						$resultset = $connect->query($query);
 							
 					if($resultset->num_rows == 0){
-						echo('<div class="w3-panel w3-blue">');
-							echo('<h1>Nenhum usuario encontrado</h1>');
-							echo('<h4>Que tal adicionar alguns?<h4>');
-						echo('</div>');
+						echo "<div class='w3-panel w3-blue'>";
+							echo"<h1>Nenhum usuario encontrado</h1>";
+							echo"<h4>Que tal adicionar alguns?<h4>";
+						echo"</div>";
 					}else{ ?>
 					
 						<table class='w3-table-all'>
@@ -30,23 +30,23 @@
 							</tr>
 							<?php
 							while($rs = $resultset->fetch_assoc()){
-									echo("<tr>");
-										echo("<td>");
-											echo($rs['nome']);	
-										echo("</td>");
-										echo("<td>");
-											echo($rs['empresa']);	
-										echo("</td>");	
-										echo("<td>");
-											echo("<form method='POST' action='/controller/pessoa_controller.php'><input id='action' name='action' type='hidden' value='excluir'><input id='id' name='id' type='hidden' value='".$rs['id']."'>"."<input class='w3-button w3-round w3-red' type='submit' value='Excluir'/></form>");								
-										echo("</td>");
-										echo("<td>");
-											echo("<form method='POST' action='/controller/pessoa_controller.php'><input id='action' name='action' type='hidden' value='alterar'><input id='id' name='id' type='hidden' value='".$rs['id']."'>"."<input class='w3-button w3-round w3-indigo' type='submit' value='Alterar'/></form>");
-										echo("</td>");
-									echo("</tr>");
+									echo "<tr>";
+										echo "<td>";
+											echo $rs['nome'];	
+										echo "</td>";
+										echo "<td>";
+											echo $rs['empresa'];	
+										echo "</td>";	
+										echo "<td>";
+											echo "<form method='POST' action='/controller/pessoa_controller.php'><input id='action' name='action' type='hidden' value='excluir'><input id='id' name='id' type='hidden' value='".$rs['id']."'>"."<input class='w3-button w3-round w3-red' type='submit' value='Excluir'/></form>";								
+										echo "</td>";
+										echo "<td>";
+											echo "<form method='POST' action='/controller/pessoa_controller.php'><input id='action' name='action' type='hidden' value='alterar'><input id='id' name='id' type='hidden' value='".$rs['id']."'>"."<input class='w3-button w3-round w3-indigo' type='submit' value='Alterar'/></form>";
+										echo "</td>";
+									echo"</tr>";
 							}
 							mysqli_close($connect);
-							echo("</table>");
+							echo "</table>";
 				}	
 			}
 		?>
