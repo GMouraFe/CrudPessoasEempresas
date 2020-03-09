@@ -12,14 +12,25 @@
 		}
 		
 		//Funcoes de querys
-		function genInsertQuery(){
-			return "INSERT INTO pessoas (nome,empresa)VALUES('".$this->nome."','".$this->empresa."')";
+		function genInsertQuery($connect){
+			$ret = $connect->prepare("INSERT INTO pessoas (nome,empresa)VALUES(?,?)");
+			$ret->bind_param("ss", $this->nome,$this->empresa);
+			return $ret;
 		}
-		function genDeleteQuery(){
-			return "Delete from pessoas where id ='".$this->id."'";
+		function genDeleteQuery($connect){
+			$ret = $connect->prepare("Delete from pessoas where id = ?");
+			$ret->bind_param("i", $this->id);
+			return $ret;
 		}
-		function genUpdateQuery(){
-			return "UPDATE pessoas SET nome = '".$this->nome."', empresa = '".$this->empresa."' WHERE pessoas.id = '".$this->id."'";
+		function genSelectQuery($connect){
+			$ret = $connect->prepare("Select id, nome, empresa from pessoas WHERE id = ?");
+			$ret->bind_param("i", $this->id);
+			return $ret;
+		}
+		function genUpdateQuery($connect){
+			$ret = $connect->prepare("UPDATE pessoas SET nome = ?, empresa = ? WHERE pessoas.id = ?");
+			$ret->bind_param("ssi", $this->nome, $this->empresa, $this->id);
+			return $ret;
 		}
 		
 	}

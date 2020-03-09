@@ -29,11 +29,8 @@
 								<th scope='col'></th>
 							</tr>
 							<?php
-
+							define("SEPARADOR", "</td><td>");
 							while($rs = $resultset->fetch_assoc()){
-									
-									define("SEPARADOR", "</td><td>");
-									
 									echo "<tr><td>";
 									echo $rs['nome'];	
 									echo SEPARADOR;

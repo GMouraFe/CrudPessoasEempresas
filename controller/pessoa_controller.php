@@ -24,8 +24,8 @@ if($action == 'alterar'){
 	
 	$connect = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_DATABASE);
 	if($connect){
-		$query = $connect->prepare("Select id, nome, empresa from pessoas WHERE id = ?");
-		$query->bind_param("i", $_POST[ID]);
+		$p = new Pessoa($_POST[ID],'','');
+		$query = $p->genSelectQuery($connect);
 		$query->execute();
 		$resultSet = $query->get_result();
 
@@ -48,24 +48,18 @@ function executarAcaoContatoSemRetorno($action){
 	
 	if($connect){
 		if($action == 'inserir'){
-			$nome = $_POST[NOME];
-			$empresa = $_POST[EMPRESA];
-			$p = new Pessoa('',$nome ,$empresa);
-			$query = $p->genInsertQuery();
+			$p = new Pessoa('',$_POST[NOME],$_POST[EMPRESA]);
+			$query = $p->genInsertQuery($connect);
 		}
 		if($action == 'excluir'){
-			$id = $_POST['id'];
-			$p = new Pessoa($id,'','');
-			$query = $p->genDeleteQuery();
+			$p = new Pessoa($_POST[ID],'','');
+			$query = $p->genDeleteQuery($connect);
 		}
 		if($action == 'alterar_finalizar'){
-			$id = $_POST[ID];
-			$nome = $_POST[NOME];
-			$empresa = $_POST[EMPRESA];
-			$p = new Pessoa($id,$nome,$empresa);
-			$query = $p->genUpdateQuery();
+			$p = new Pessoa($_POST[ID],$_POST[NOME],$_POST[EMPRESA]);
+			$query = $p->genUpdateQuery($connect);
 		}
-		$connect->query($query);
+		$query->execute();
 		mysqli_close($connect);
 	}
 }
