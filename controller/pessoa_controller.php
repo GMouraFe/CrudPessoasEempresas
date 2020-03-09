@@ -21,16 +21,16 @@ if($action == 'excluir'){
 }
 
 if($action == 'alterar'){
-	$id = $_POST['id'];
-	$p = new Pessoa($id,'','');
+	
 	$connect = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_DATABASE);
 	if($connect){
-		$query = $p->genSelectQuery();
-		$resultset = $connect->query($query);
-		while($rs = $resultset->fetch_assoc()){
-			$p->id= $rs[ID];
-			$p->nome = $rs[NOME];
-			$p->empresa = $rs[EMPRESA];
+		$query = $connect->prepare("Select id, nome, empresa from pessoas WHERE id = ?");
+		$query->bind_param("i", $_POST[ID]);
+		$query->execute();
+		$resultSet = $query->get_result();
+
+		while($rs = $resultSet->fetch_assoc()){
+			$p = new Pessoa($rs[ID],$rs[NOME], $rs[EMPRESA]);
 		}
 		mysqli_close($connect);
 	}

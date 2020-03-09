@@ -22,8 +22,5 @@
 			return "UPDATE pessoas SET nome = '".$this->nome."', empresa = '".$this->empresa."' WHERE pessoas.id = '".$this->id."'";
 		}
 		
-		function genSelectQuery(){
-			return "Select id, nome, empresa from pessoas WHERE id = '".$this->id."'";
-		}
 	}
 ?>
