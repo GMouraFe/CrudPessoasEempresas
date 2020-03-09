@@ -21,7 +21,7 @@
 					}else{ ?>
 					
 						<table class='w3-table-all'>
-							<caption align='bottom'>Individuos já cadastrados e disponíveis</caption>
+							<caption>Individuos já cadastrados e disponíveis</caption>
 							<tr class='w3-teal'>
 								<th scope='col'>Nome</th>
 								<th scope='col'>Empresa</th>
@@ -29,21 +29,20 @@
 								<th scope='col'></th>
 							</tr>
 							<?php
+
 							while($rs = $resultset->fetch_assoc()){
-									echo "<tr>";
-										echo "<td>";
-											echo $rs['nome'];	
-										echo "</td>";
-										echo "<td>";
-											echo $rs['empresa'];	
-										echo "</td>";	
-										echo "<td>";
-											echo "<form method='POST' action='/controller/pessoa_controller.php'><input id='action' name='action' type='hidden' value='excluir'><input id='id' name='id' type='hidden' value='".$rs['id']."'>"."<input class='w3-button w3-round w3-red' type='submit' value='Excluir'/></form>";								
-										echo "</td>";
-										echo "<td>";
-											echo "<form method='POST' action='/controller/pessoa_controller.php'><input id='action' name='action' type='hidden' value='alterar'><input id='id' name='id' type='hidden' value='".$rs['id']."'>"."<input class='w3-button w3-round w3-indigo' type='submit' value='Alterar'/></form>";
-										echo "</td>";
-									echo"</tr>";
+									
+									define("SEPARADOR", "</td><td>");
+									
+									echo "<tr><td>";
+									echo $rs['nome'];	
+									echo SEPARADOR;
+									echo $rs['empresa'];	
+									echo SEPARADOR;
+									echo "<form method='POST' action='/controller/pessoa_controller.php'><input id='action' name='action' type='hidden' value='excluir'><input id='id' name='id' type='hidden' value='".$rs['id']."'>"."<input class='w3-button w3-round w3-red' type='submit' value='Excluir'/></form>";								
+									echo SEPARADOR;
+									echo "<form method='POST' action='/controller/pessoa_controller.php'><input id='action' name='action' type='hidden' value='alterar'><input id='id' name='id' type='hidden' value='".$rs['id']."'>"."<input class='w3-button w3-round w3-indigo' type='submit' value='Alterar'/></form>";
+									echo "</td></tr>";
 							}
 							mysqli_close($connect);
 							echo "</table>";

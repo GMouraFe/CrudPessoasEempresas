@@ -3,6 +3,10 @@
 include ('/../models/pessoa.php');
 include ('/../resources/DB.php');
 
+define("ID", "id");
+define("EMPRESA", "empresa");
+define("NOME", "nome");
+
 //Recebimento da ação do usuario
 $action = $_POST['action'];
 
@@ -24,9 +28,9 @@ if($action == 'alterar'){
 		$query = $p->genSelectQuery();
 		$resultset = $connect->query($query);
 		while($rs = $resultset->fetch_assoc()){
-			$p->id= $rs['id'];
-			$p->nome = $rs['nome'];
-			$p->empresa = $rs['empresa'];
+			$p->id= $rs[ID];
+			$p->nome = $rs[NOME];
+			$p->empresa = $rs[EMPRESA];
 		}
 		mysqli_close($connect);
 	}
@@ -44,8 +48,8 @@ function executarAcaoContatoSemRetorno($action){
 	
 	if($connect){
 		if($action == 'inserir'){
-			$nome = $_POST['nome'];
-			$empresa = $_POST['empresa'];
+			$nome = $_POST[NOME];
+			$empresa = $_POST[EMPRESA];
 			$p = new Pessoa('',$nome ,$empresa);
 			$query = $p->genInsertQuery();
 		}
@@ -55,9 +59,9 @@ function executarAcaoContatoSemRetorno($action){
 			$query = $p->genDeleteQuery();
 		}
 		if($action == 'alterar_finalizar'){
-			$id = $_POST['id'];
-			$nome = $_POST['nome'];
-			$empresa = $_POST['empresa'];
+			$id = $_POST[ID];
+			$nome = $_POST[NOME];
+			$empresa = $_POST[EMPRESA];
 			$p = new Pessoa($id,$nome,$empresa);
 			$query = $p->genUpdateQuery();
 		}
