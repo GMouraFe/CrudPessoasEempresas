@@ -1,8 +1,9 @@
 <!DOCTYPE HTML>
-<HTML>
+<HTML lang="pt-br">
 	<HEAD>
-		 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-		 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-flat.css">
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+		<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-flat.css">
+		<title>Bem vindo ao Pessoas & Empresas</title>
 	</HEAD>
 	<BODY class="w3-container">
 		<div class="w3-panel w3-flat-turquoise">

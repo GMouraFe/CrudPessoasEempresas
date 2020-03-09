@@ -1,8 +1,9 @@
 <!DOCTYPE HTML>
-<HTML>
+<HTML lang="pt-br">
 	<head>
-		 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-		 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-flat.css">
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+		<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-flat.css">
+		<title>Bem vindo ao Pessoas & Empresas</title>
 	</head>
 	<body class="w3-container">
 			<?php
@@ -20,11 +21,12 @@
 					}else{ ?>
 					
 						<table class='w3-table-all'>
+							<caption align='bottom'>Individuos já cadastrados e disponíveis</caption>
 							<tr class='w3-teal'>
-								<th>Nome</th>
-								<th>Empresa</th>
-								<th>Ações</th>
-								<th></th>
+								<th scope='col'>Nome</th>
+								<th scope='col'>Empresa</th>
+								<th scope='col'>Ações</th>
+								<th scope='col'></th>
 							</tr>
 							<?php
 							while($rs = $resultset->fetch_assoc()){
