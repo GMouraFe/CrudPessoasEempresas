@@ -1,74 +1,69 @@
 <?php
-			//Inclusão da clase base pessoa
-			include ('/var/www/html/models/pessoa.php');
-			include ('/var/www/html/CrudPessoasEempresas/resources/DB.php');
-		
-			//Recebimento da ação do usuario
-			$action = $_POST['action'];
-		
-			//Chamada if caso a ação da index seja Inserir
-			if($action == 'inserir'){
-				executar_acao_contato($action);
-				include ('/var/www/html/views/msg_sucesso.php');
-			}
+//Inclusão da clase base pessoa
+include ('/../models/pessoa.php');
+include ('/../resources/DB.php');
 
-			//Chamada if caso a ação da index seja excluir
-			if($action == 'excluir'){
-				executar_acao_contato($action);
-				include ('/var/www/html/views/msg_exclusao.php');
-			}
+//Recebimento da ação do usuario
+$action = $_POST['action'];
 
-			//Chamada if inicial caso a ação da index seja Alterar
-			if($action == 'alterar'){
+if($action == 'inserir'){
+	executarAcaoContatoSemRetorno($action);
+	include ('/../views/msg_sucesso.php');
+}
 
-				$p = new Pessoa($_POST['id'],'','');
-				$connect = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_DATABASE);
-				if($connect){
-					$query = $p->genSelectQuery();
-					$resultset = $connect->query($query);
-					while($rs = $resultset->fetch_assoc()){
-						$p->id= $rs['id'];
-						$p->nome = $rs['nome'];
-						$p->empresa = $rs['empresa'];
-					}
-					mysqli_close($connect);
-				}
-				include ('/var/www/html/views/tela_alteracao.php');
-			}
+if($action == 'excluir'){
+	executarAcaoContatoSemRetorno($action);
+	include ('/../views/msg_exclusao.php');
+}
 
-			//Chamada if final caso a ação da index seja Alterar
-			if($action == 'alterar_finalizar'){
-				executar_acao_contato($action);
-				include ('/var/www/html/views/msg_alteracao.php');
-			}
+if($action == 'alterar'){
+	$id = $_POST['id'];
+	$p = new Pessoa($id,'','');
+	$connect = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_DATABASE);
+	if($connect){
+		$query = $p->genSelectQuery();
+		$resultset = $connect->query($query);
+		while($rs = $resultset->fetch_assoc()){
+			$p->id= $rs['id'];
+			$p->nome = $rs['nome'];
+			$p->empresa = $rs['empresa'];
+		}
+		mysqli_close($connect);
+	}
+	include ('/../views/tela_alteracao.php');
+}
+
+if($action == 'alterar_finalizar'){
+	executarAcaoContatoSemRetorno($action);
+	include ('/../views/msg_alteracao.php');
+}
 
 
-			function executar_acao_contato($action){
-				$connect = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_DATABASE);
-				
-			
-				if($connect){
-					if($action == 'inserir'){
-						$nome = $_POST['nome'];
-						$empresa = $_POST['empresa'];
-						$p = new Pessoa('',$nome ,$empresa);
-						$query = $p->genInsertQuery();
-					}
-					if($action == 'excluir'){
-						$id = $_POST['id'];
-						$p = new Pessoa($id,'','');
-						$query = $p->genDeleteQuery();
-					}
-					if($action == 'alterar_finalizar'){
-						$id = $_POST['id'];
-						$nome = $_POST['nome'];
-						$empresa = $_POST['empresa'];
-						$p = new Pessoa($id,$nome,$empresa);
-						$query = $p->genUpdateQuery();
-					}
-					$connect->query($query);
-					mysqli_close($connect);
-				}
-			}
+function executarAcaoContatoSemRetorno($action){
+	$connect = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_DATABASE);
+	
+	if($connect){
+		if($action == 'inserir'){
+			$nome = $_POST['nome'];
+			$empresa = $_POST['empresa'];
+			$p = new Pessoa('',$nome ,$empresa);
+			$query = $p->genInsertQuery();
+		}
+		if($action == 'excluir'){
+			$id = $_POST['id'];
+			$p = new Pessoa($id,'','');
+			$query = $p->genDeleteQuery();
+		}
+		if($action == 'alterar_finalizar'){
+			$id = $_POST['id'];
+			$nome = $_POST['nome'];
+			$empresa = $_POST['empresa'];
+			$p = new Pessoa($id,$nome,$empresa);
+			$query = $p->genUpdateQuery();
+		}
+		$connect->query($query);
+		mysqli_close($connect);
+	}
+}
 
 ?>

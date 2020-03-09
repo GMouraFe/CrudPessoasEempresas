@@ -29,7 +29,7 @@
 		<h3>Já cadastrados:</h3>
 			
 			<?php 
-				include ('/var/www/html/views/tabela_index.php');
+				include ('/views/tabela_index.php');
 			?>
 		
 	</BODY>
