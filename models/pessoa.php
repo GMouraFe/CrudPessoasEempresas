@@ -5,7 +5,7 @@
 		var $empresa;
 		
 		//Construtores
-		function Pessoa($input_id, $input_nome, $input_empresa){
+		function __construct($input_id, $input_nome, $input_empresa){
 			$this->id = $input_id;
 			$this->nome = $input_nome;
 			$this->empresa = $input_empresa;
