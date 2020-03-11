@@ -63,7 +63,9 @@ function executarAcaoContatoSemRetorno($action){
 			case "alterar_finalizar":
 				$p = new Pessoa($_POST[ID],$_POST[NOME],$_POST[EMPRESA]);
 				$query = $p->genUpdateQuery($connect);
-				break;		
+				break;
+			default:
+				break;
 		}
 
 		$query->execute();

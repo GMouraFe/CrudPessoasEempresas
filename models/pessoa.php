@@ -38,8 +38,7 @@
 		public static function findAll(){
 			$query = "Select id, nome, empresa from pessoas";
 			$connect = connectToMyDB();
-			$resultSet = $connect->query($query);
-			return $resultSet;
+			return $connect->query($query);
 		}
 		
 	}
