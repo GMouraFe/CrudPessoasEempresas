@@ -14,9 +14,9 @@
 			<form method="POST" action="/controller/pessoa_controller.php">
 			<div class="w3-quarter">
 				<label for='nome'>Nome:</label>
-				<input class="w3-input w3-border" id="nome" name="nome" type='text'>
+				<input class="w3-input w3-border" id="nome" name="nome" type='text' required='true'>
 				<label for='empresa'>Empresa:</label>
-				<input class="w3-input w3-border" id="empresa" name="empresa" type='text'>
+				<input class="w3-input w3-border" id="empresa" name="empresa" type='text' required='true'>
 				<input id="action" name="action" type='hidden' value='inserir'>	
 				<br>
 				<div class="w3-quarter">

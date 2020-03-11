@@ -1,7 +1,7 @@
 <?php
 //Inclusão da clase base pessoa
 include ('/../models/pessoa.php');
-include ('/../resources/DB.php');
+
 
 define("ID", "id");
 define("EMPRESA", "empresa");
@@ -20,11 +20,16 @@ if($action == 'excluir'){
 	include ('/../views/msg_exclusao.php');
 }
 
+if($action == 'alterar_finalizar'){
+	executarAcaoContatoSemRetorno($action);
+	include ('/../views/msg_alteracao.php');
+}
+
 if($action == 'alterar'){
 	
-	$connect = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_DATABASE);
+	$connect = connectToMyDB();
 	if($connect){
-		$p = new Pessoa($_POST[ID],'','');
+		$p = new Pessoa($_POST[ID],null,null);
 		$query = $p->genSelectQuery($connect);
 		$query->execute();
 		$resultSet = $query->get_result();
@@ -37,28 +42,30 @@ if($action == 'alterar'){
 	include ('/../views/tela_alteracao.php');
 }
 
-if($action == 'alterar_finalizar'){
-	executarAcaoContatoSemRetorno($action);
-	include ('/../views/msg_alteracao.php');
-}
+
 
 
 function executarAcaoContatoSemRetorno($action){
-	$connect = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_DATABASE);
+	$connect = connectToMyDB();
 	
 	if($connect){
-		if($action == 'inserir'){
-			$p = new Pessoa('',$_POST[NOME],$_POST[EMPRESA]);
-			$query = $p->genInsertQuery($connect);
+		switch($action){
+			case "inserir":
+				$p = new Pessoa(null,$_POST[NOME],$_POST[EMPRESA]);
+				$query = $p->genInsertQuery($connect);
+				break;
+
+			case "excluir":
+				$p = new Pessoa($_POST[ID],null,null);
+				$query = $p->genDeleteQuery($connect);
+				break;
+			
+			case "alterar_finalizar":
+				$p = new Pessoa($_POST[ID],$_POST[NOME],$_POST[EMPRESA]);
+				$query = $p->genUpdateQuery($connect);
+				break;		
 		}
-		if($action == 'excluir'){
-			$p = new Pessoa($_POST[ID],'','');
-			$query = $p->genDeleteQuery($connect);
-		}
-		if($action == 'alterar_finalizar'){
-			$p = new Pessoa($_POST[ID],$_POST[NOME],$_POST[EMPRESA]);
-			$query = $p->genUpdateQuery($connect);
-		}
+
 		$query->execute();
 		mysqli_close($connect);
 	}
