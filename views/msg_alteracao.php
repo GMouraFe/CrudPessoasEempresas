@@ -8,7 +8,7 @@
 	<body class="w3-container">
 		<div class="w3-panel w3-blue">
 			<h1>Sucesso!</h1>
-			<h4>Individuo alterado com sucesso <a href="/../index.php/">clique aqui para retornar</a> .<h4>
+			<h4>Individuo alterado com sucesso <a href='<?php echo 'http://'.$_SERVER["SERVER_ADDR"]?>'>clique aqui para retornar</a> .<h4>
 		</div>
 	</body>
 </HTML>
