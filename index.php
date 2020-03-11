@@ -11,7 +11,7 @@
 		</div>
 		<h3>Insira aqui</h3>
 		<div class="w3-row-padding">
-			<form method="POST" action="rotas.php">
+			<form method="POST" action="./rotas.php">
 			<div class="w3-quarter">
 				<label for='nome'>Nome:</label>
 				<input class="w3-input w3-border" id="nome" name="nome" type='text' required='true'>
@@ -22,9 +22,10 @@
 				<div class="w3-quarter">
 				<input class="w3-button w3-teal" type="submit" value="Inserir"/>
 			</div>
+			</form>
 		</div>
 
-			</form>
+			
 		</div>
 		<h3>Já cadastrados:</h3>
 			

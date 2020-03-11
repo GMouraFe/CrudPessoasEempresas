@@ -2,9 +2,9 @@
 	include ('/var/www/html/resources/DB.php');
 
 	class Pessoa{
-		var $id;
-		var $nome;
-		var $empresa;
+		private $id;
+		private $nome;
+		private $empresa;
 		
 		//Construtores
 		function __construct(){

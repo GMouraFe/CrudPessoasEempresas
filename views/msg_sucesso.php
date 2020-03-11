@@ -8,7 +8,7 @@
 	<body class="w3-container">
 		<div class="w3-panel w3-green">
 			<h1>Sucesso!</h1>
-			<h4>Individuo inserido com sucesso <a href='<?php var_dump($_SERVER["SERVER_ADDR"]); echo $_SERVER["SERVER_ADDR"]?>'>clique aqui para retornar</a> .</h4>
+			<h4>Individuo inserido com sucesso <a href='<?php echo 'http://'.$_SERVER["SERVER_ADDR"]?>'>clique aqui para retornar</a> .</h4>
 		</div>
 	</body>
 </HTML>
