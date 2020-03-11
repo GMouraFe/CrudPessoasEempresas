@@ -17,7 +17,8 @@
 		break;
 		case "alterar":
 			$pc = new PessoaController();
-			$p = $pc->buscarInformacaoAlterarContato();
+			$pc->buscarInformacaoAlterarContato();
+			$p = $pc->getPessoa();
 			include ('/var/www/html/views/tela_alteracao.php');
 		break;			
 		case "alterar_finalizar":
