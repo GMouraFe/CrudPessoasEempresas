@@ -1,5 +1,5 @@
 <?php
-	include ('/../resources/DB.php');
+	include ('/var/www/html/resources/DB.php');
 
 	class Pessoa{
 		var $id;
@@ -7,10 +7,33 @@
 		var $empresa;
 		
 		//Construtores
-		function __construct($input_id, $input_nome, $input_empresa){
-			$this->id = $input_id;
-			$this->nome = $input_nome;
-			$this->empresa = $input_empresa;
+		function __construct(){
+
+		}
+		//Getters e Setters
+		
+		public function setId($id){
+			$this->id = $id;
+		}
+		
+		public function setNome($nome){
+			$this->nome = $nome;
+		}
+		
+		public function setEmpresa($empresa){
+			$this->empresa = $empresa;
+		}
+		
+		public function getId(){
+			return $this->id;
+		}
+		
+		public function getNome(){
+			return $this->nome;
+		}
+		
+		public function getEmpresa(){
+			return $this->empresa;
 		}
 		
 		//Funcoes de querys

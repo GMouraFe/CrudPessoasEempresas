@@ -11,7 +11,7 @@
 		</div>
 		<h3>Insira aqui</h3>
 		<div class="w3-row-padding">
-			<form method="POST" action="/controller/pessoa_controller.php">
+			<form method="POST" action="rotas.php">
 			<div class="w3-quarter">
 				<label for='nome'>Nome:</label>
 				<input class="w3-input w3-border" id="nome" name="nome" type='text' required='true'>
@@ -29,7 +29,8 @@
 		<h3>Já cadastrados:</h3>
 			
 			<?php 
-				include ('/views/tabela_index.php');
+				
+				include ('/var/www/html/views/tabela_index.php');
 			?>
 		
 	</BODY>

@@ -9,7 +9,7 @@
 	<body class="w3-container">
 			<?php
 					
-					include ('/../models/pessoa.php');
+					include ('/var/www/html/models/pessoa.php');
 					$resultset = Pessoa::findAll();
 							
 					if($resultset->num_rows == 0){
@@ -35,9 +35,9 @@
 									echo SEPARADOR;
 									echo $rs['empresa'];	
 									echo SEPARADOR;
-									echo "<form method='POST' onSubmit='return confirm(\"Está realmente certo disto?\");' action='/controller/pessoa_controller.php'><input id='action' name='action' type='hidden' value='excluir'><input id='id' name='id' type='hidden' value='".$rs['id']."'>"."<input class='w3-button w3-round w3-red' type='submit' value='Excluir'/></form>";								
+									echo "<form method='POST' onSubmit='return confirm(\"Está realmente certo disto?\");' action='/../rotas.php'><input id='action' name='action' type='hidden' value='excluir'><input id='id' name='id' type='hidden' value='".$rs['id']."'>"."<input class='w3-button w3-round w3-red' type='submit' value='Excluir'/></form>";								
 									echo SEPARADOR;
-									echo "<form method='POST' action='/controller/pessoa_controller.php'><input id='action' name='action' type='hidden' value='alterar'><input id='id' name='id' type='hidden' value='".$rs['id']."'>"."<input class='w3-button w3-round w3-indigo' type='submit' value='Alterar'/></form>";
+									echo "<form method='POST' action='/../rotas.php'><input id='action' name='action' type='hidden' value='alterar'><input id='id' name='id' type='hidden' value='".$rs['id']."'>"."<input class='w3-button w3-round w3-indigo' type='submit' value='Alterar'/></form>";
 									echo "</td></tr>";
 							}
 							echo "</table>";

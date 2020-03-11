@@ -1,67 +1,61 @@
 <?php
 //Inclusão da clase base pessoa
-include ('/../models/pessoa.php');
+include ('/var/www/html/models/pessoa.php');
 
 
 define("ID", "id");
 define("EMPRESA", "empresa");
 define("NOME", "nome");
 
-//Recebimento da ação do usuario
-$action = $_POST['action'];
-
-if($action == 'inserir'){
-	executarAcaoContatoSemRetorno($action);
-	include ('/../views/msg_sucesso.php');
-}
-
-if($action == 'excluir'){
-	executarAcaoContatoSemRetorno($action);
-	include ('/../views/msg_exclusao.php');
-}
-
-if($action == 'alterar_finalizar'){
-	executarAcaoContatoSemRetorno($action);
-	include ('/../views/msg_alteracao.php');
-}
-
-if($action == 'alterar'){
-	
+function executarAcaoAlterar(){
 	$connect = connectToMyDB();
 	if($connect){
-		$p = new Pessoa($_POST[ID],null,null);
+		$p = new Pessoa();
+		$p->setId($_POST[ID]);
 		$query = $p->genSelectQuery($connect);
 		$query->execute();
 		$resultSet = $query->get_result();
 
 		while($rs = $resultSet->fetch_assoc()){
-			$p = new Pessoa($rs[ID],$rs[NOME], $rs[EMPRESA]);
+			$p = new Pessoa();
+			
+			$p->setId($rs[ID]);
+			$p->setNome($rs[NOME]);
+			$p->setEmpresa($rs[EMPRESA]);
+			
 		}
 		mysqli_close($connect);
 	}
-	include ('/../views/tela_alteracao.php');
+	return $p;
 }
 
-
-
-
+	
 function executarAcaoContatoSemRetorno($action){
 	$connect = connectToMyDB();
 	
 	if($connect){
 		switch($action){
 			case "inserir":
-				$p = new Pessoa(null,$_POST[NOME],$_POST[EMPRESA]);
+				$p = new Pessoa();
+				
+				$p->setNome($_POST[NOME]);
+				$p->setEmpresa($_POST[EMPRESA]);
 				$query = $p->genInsertQuery($connect);
 				break;
 
 			case "excluir":
-				$p = new Pessoa($_POST[ID],null,null);
+				$p = new Pessoa();
+				
+				$p->setId($_POST[ID]);
 				$query = $p->genDeleteQuery($connect);
 				break;
 			
 			case "alterar_finalizar":
-				$p = new Pessoa($_POST[ID],$_POST[NOME],$_POST[EMPRESA]);
+				$p = new Pessoa();
+				
+				$p->setId($_POST[ID]);
+				$p->setNome($_POST[NOME]);
+				$p->setEmpresa($_POST[EMPRESA]);
 				$query = $p->genUpdateQuery($connect);
 				break;
 			default:

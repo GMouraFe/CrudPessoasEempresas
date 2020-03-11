@@ -10,13 +10,13 @@
 			<h3>Altere os dados conforme desejar...</h3>
 		</div>
 		<div class="w3-quarter">
-			<form method="POST" action="pessoa_controller.php">
+			<form method="POST" action="rotas.php">
 				<label for="nome">Nome:</label>
-				<input class="w3-input w3-border" id="nome" name="nome" type="text" required='true' value="<?php echo $p->nome ?>">
+				<input class="w3-input w3-border" id="nome" name="nome" type="text" required='true' value="<?php echo $p->getNome() ?>">
 				<label for="empresa">Empresa:</label>
-				<input class="w3-input w3-border" id="empresa" name="empresa" type="text" required='true' value="<?php echo $p->empresa ?>">
+				<input class="w3-input w3-border" id="empresa" name="empresa" type="text" required='true' value="<?php echo $p->getEmpresa() ?>">
 				<input id="action" name="action" type="hidden" value="alterar_finalizar">
-				<input id="id" name="id" type="hidden" value="<?php echo $p->id ?>">	
+				<input id="id" name="id" type="hidden" value="<?php echo $p->getId() ?>">	
 				<br>						
 				<input class="w3-button w3-teal" type="submit" value="Alterar"/>
 			</form>
